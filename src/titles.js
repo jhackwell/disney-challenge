@@ -35,9 +35,9 @@ class Titles {
         this.data = clone;
     };
 
-    search(searchString) {
+    search(searchString, type) {
         const results = [];
-        const matches = this.findMatchingPaths(searchString, this.data);
+        const matches = this.findMatchingPaths(searchString, type, this.data);
         _.forEach(matches, (match) => {
             results.push(this.pickDeep(this.data, match))
         });
@@ -70,19 +70,19 @@ class Titles {
      * @param paths
      * @returns {*|Array}
      */
-    findMatchingPaths(searchString, data, path, paths) {
+    findMatchingPaths(searchString, type, data, path, paths) {
         path = path || '';
         paths = paths || [];
         _.forEach(data, (title, index) => {
             const currentPath = `${path ? path + '.' : ''}${index}`;
             // Push matches
-            if (title.name == searchString) {
+            if (title.name == searchString && (title.type == type || !type)) {
                 paths.push(currentPath)
             }
             // Anything that can be nested should be recursed through
             _.forEach(nested, (property) => {
                 if (title.hasOwnProperty(property)) {
-                    this.findMatchingPaths(searchString, title[property], `${currentPath}.${property}`, paths)
+                    this.findMatchingPaths(searchString, type, title[property], `${currentPath}.${property}`, paths)
                 }
             })
         });

@@ -27,6 +27,13 @@ describe('Titles', function () {
             const res = titles.search('Foo');
             assert.equal(res.length, 0);
         });
+        it('Should filter by title type', () => {
+            let res = titles.search('Frozen', 'Feature');
+            assert.equal(res.length, 1);
+            res = titles.search('Frozen', 'Miniseries');
+            assert.equal(res.length, 0);
+        });
+
     });
     describe('Add', () => {
         it('Should add a new title to the titles', () => {

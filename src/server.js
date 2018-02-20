@@ -15,7 +15,8 @@ const titles = new Titles(data);
 app.route(`${config.base}/${config.version}/title/`)
     .get(function (req, res) {
         const searchString = req.query.searchString ? req.query.searchString : '';
-        res.send(titles.search(searchString));
+        const type = req.query.type ? req.query.type : '';
+        res.send(titles.search(searchString, type));
     })
     .post(function (req, res) {
         if (!req.body) {

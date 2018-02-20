@@ -5,8 +5,10 @@ https://github.com/jhackwell/
 (Navigate to source directory)
 `docker build -t disney-challenge .`
 `docker run --name disney-challenge --rm -p 8080:8080 disney-challenge`
-
 Your server will now be available at `localhost:8080`.  The root endpoint is `/api/v1/title`.
+
+## Ending Server
+`docker kill disney-challenge`
 
 ## Technologies
 This toy application keeps all title metadata in memory, and manipulates it using raw JSON object manipulation. The server itself runs in Express 4.x on top of Node 4.x.  The only other dependency is Lodash. 
