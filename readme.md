@@ -35,7 +35,7 @@ PARAMETERS: `searchString`
 #### SEARCH
 `/api/v1/title/`
 METHOD: GET
-PARAMETERS: `searchString`
+PARAMETERS: `searchString`, `type` (optional)
 
 ## Known Issues
 Deleting a title currently results in an empty title being left in the metadata database.
